@@ -1,13 +1,11 @@
-hours=0;
+  hours=0;
   minutes=0;
   seconds=0;
-
-  
-
+  motorpin=13;
 
 void setup(){
-  Serial.begin(9600);
   
+  Serial.begin(9600);
   
 }
 
@@ -24,6 +22,7 @@ void loop(){
       }
       else
       {
+        delay(1000);
         seconds=seconds+1;
       }
     }
@@ -39,8 +38,19 @@ void loop(){
 
   Serial.print(hours);
   Serial.print(":");
-   Serial.print(minutes);
+  Serial.print(minutes);
   Serial.print(":");
-   Serial.print(seconds);
+  Serial.print(seconds);
   Serial.print(":");
+
+  if(hours==5 && minutes==0){
+    digitalWrite(motorpin,HIGH);
+    Serial.print("Motor On");
+    delay(5000);
+    digitalWrite(motorpin,LOW);
+  }
+  else
+  {
+    digitalWrite(motorpin,LOW);
+  }
 }
